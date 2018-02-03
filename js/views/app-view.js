@@ -69,7 +69,6 @@ var app = app || {};
 				this.$main.hide();
 				this.$footer.hide();
 			}
-
 			this.allCheckbox.checked = !remaining;
 		},
 

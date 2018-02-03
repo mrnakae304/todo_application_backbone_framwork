@@ -18,11 +18,13 @@ var app = app || {};
 		// The DOM events specific to an item.
 		events: {
 			'click .toggle': 'toggleCompleted',
+			'click .edit-btn': 'edit',
 			'dblclick label': 'edit',
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
-			'blur .edit': 'close'
+			'blur .edit': 'close',
+			'click .priority-btn': 'addClass'
 		},
 
 		// The TodoView listens for changes to its model, re-rendering. Since
@@ -53,6 +55,7 @@ var app = app || {};
 			this.toggleVisible();
 			this.$input = this.$('.edit');
 			return this;
+
 		},
 
 		toggleVisible: function () {
@@ -74,6 +77,10 @@ var app = app || {};
 		edit: function () {
 			this.$el.addClass('editing');
 			this.$input.focus();
+		},
+
+		addClass: function() {
+			this.$el.toggleClass('priority', this.model.get('priority'));
 		},
 
 		// Close the `"editing"` mode, saving changes to the todo.
